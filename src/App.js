@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import TooltipForm from "./TooltipForm";
+import TooltipPreview from "./TooltipPreview";
 
-function App() {
+const App = () => {
+  const [tooltipSettings, setTooltipSettings] = useState({
+    targetElement: "B1",
+    tooltipText: "",
+    textSize: 14,
+    padding: 10,
+    textColor: "#ffffff",
+    backgroundColor: "#333333",
+    cornerRadius: 4,
+    tooltipWidth: 200,
+    
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTooltipSettings((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Tooltip App</h1>
+      <div className="container">
+        <TooltipForm
+          {...tooltipSettings}
+          handleChange={handleChange}
+        />
+        <TooltipPreview
+          {...tooltipSettings}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
