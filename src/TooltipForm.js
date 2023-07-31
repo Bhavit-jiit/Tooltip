@@ -14,7 +14,7 @@ const TooltipForm = ({
 }) => {
   return (
     <div className="tooltip-form">
-      <h2>Tooltip Settings</h2>
+      
       <div>
         <label htmlFor="targetElement">Target Element:</label>
         <select
